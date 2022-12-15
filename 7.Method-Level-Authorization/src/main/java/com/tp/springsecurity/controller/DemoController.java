@@ -9,7 +9,20 @@ public class DemoController {
 
     @GetMapping("/hello")
     @PreAuthorize("hasAuthority('read')")
-    public String demo() {
+    public String hello() {
         return "Helloooooooooooooo!";
+    }
+
+
+    @GetMapping("/hola")
+    @PreAuthorize("hasAnyAuthority('read', 'write')")
+    public String hola() {
+        return "Holaaaaaaaaaaaaaaaa!!";
+    }
+
+    @GetMapping("/namaste")
+    @PreAuthorize("hasAnyAuthority('read', 'write')")
+    public String namaste() {
+        return "Namastee!!!!!!!!!!!!!!";
     }
 }
