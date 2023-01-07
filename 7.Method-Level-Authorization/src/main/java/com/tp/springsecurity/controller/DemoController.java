@@ -2,6 +2,7 @@ package com.tp.springsecurity.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -24,5 +25,12 @@ public class DemoController {
     @PreAuthorize("hasAnyAuthority('read', 'write')")
     public String namaste() {
         return "Namastee!!!!!!!!!!!!!!";
+    }
+
+
+    @GetMapping("/namaste/{name}")
+    @PreAuthorize("#userName == authentication.name")
+    public String helloName(@PathVariable("name") String userName) {
+        return "Namastee!!!!!!!!!!!!!!" + userName;
     }
 }
